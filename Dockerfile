@@ -18,3 +18,4 @@ EXPOSE 8002
 
 # Define the entry point for the container
 CMD ["node", "index.js"]
+
