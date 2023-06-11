@@ -23,6 +23,7 @@ router.post("/post", upload.single("image"), async (req, res) => {
     const content = new Content({
       title: req.body.title,
       desc: req.body.desc,
+      author: req.body.author,
       image: result.secure_url,
     });
     const savedContent = await content.save();
@@ -38,6 +39,15 @@ router.get("/data", async (req, res) => {
     res.send(data);
   } catch (err) {
     res.status(404).send(err);
+  }
+});
+
+router.get("/article/:id", async (req, res) => {
+  try {
+    const data = await Content.findById(req.params.id);
+    res.status(200).send(data);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

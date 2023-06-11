@@ -12,6 +12,9 @@ const ContentSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    author: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

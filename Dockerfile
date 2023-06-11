@@ -4,12 +4,17 @@ FROM node:18
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the application files into the working directory
-COPY . /app
+# Copy package.json and package-lock.json files
+COPY package*.json /app/
 
-# Install the application dependencies
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application files
+COPY . /app/
+
+# Expose the port used by the backend server
 EXPOSE 8002
+
 # Define the entry point for the container
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
